@@ -55,7 +55,7 @@ const SignIn = () => {
     };
 
     return (
-        <div className="root">
+        <div className="sign-in-root">
             <div
                 style={{
                     display: "flex",
@@ -81,7 +81,7 @@ const SignIn = () => {
                         onChange={(e) => setUsername(e.target.value)}
                     />
                     {error && <div className="bg-danger text-white p-3 error-box">{error}</div>}
-                    <PrimaryButton className="sign-in-btn" loading={loading}>
+                    <PrimaryButton className="long-sign-in-btn" loading={loading}>
                         Sign In
                     </PrimaryButton>
                 </form>
