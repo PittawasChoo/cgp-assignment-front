@@ -1,0 +1,22 @@
+.nb-container {
+    position: fixed;
+    height: 60px;
+    width: 100%;
+    background-color: var(--green500);
+    display: flex;
+    padding: 10px 32px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-text-navbar {
+    font-size: 20px;
+}
+
+.sign-in-btn {
+    width: 105px;
+}
+
+/* Mobile (≤ 768px) */
+@media (max-width: 768px) {
+}
