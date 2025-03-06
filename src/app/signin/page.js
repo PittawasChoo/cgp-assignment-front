@@ -1,10 +1,11 @@
 "use client";
 
-import { useContext, useState } from "react";
 import { Inter } from "next/font/google";
+import { useContext, useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
-import PrimaryButton from "components/buttons/primary";
 import LogoText from "components/logoText";
+import PrimaryButton from "components/buttons/primary";
 
 import { AuthContext } from "context/authContext";
 
@@ -21,6 +22,18 @@ const SignIn = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const { signin } = useContext(AuthContext);
+    const searchParams = useSearchParams();
+    const redirectTo = searchParams.get("redirect") || "/";
+    const router = useRouter();
+
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            const token = localStorage.getItem("authToken");
+            if (token) {
+                router.replace(redirectTo);
+            }
+        }
+    }, []);
 
     const handleSignIn = async () => {
         if (!username.trim()) {
@@ -46,7 +59,7 @@ const SignIn = () => {
                 throw new Error(data.message || "Sign in failed");
             }
 
-            signin(data.jwt);
+            signin(data.jwt, redirectTo);
         } catch (err) {
             setError(err.message);
         } finally {

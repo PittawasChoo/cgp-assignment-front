@@ -20,13 +20,13 @@ export const AuthProvider = ({ children }) => {
         }
     }, [username]);
 
-    const signin = (token) => {
+    const signin = (token, link) => {
         const tokenObj = jwtDecode(token);
         const username = tokenObj.username;
 
         setUsername(username);
         localStorage.setItem("authToken", token);
-        router.push("/");
+        router.push(link || "/");
     };
 
     const signout = () => {
