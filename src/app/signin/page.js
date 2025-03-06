@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useContext, useState } from "react";
 import { Inter } from "next/font/google";
 
 import PrimaryButton from "components/buttons/primary";
 import LogoText from "components/logoText";
+
+import { AuthContext } from "context/authContext";
 
 import "./styles.css";
 
@@ -19,7 +20,7 @@ const SignIn = () => {
     const [username, setUsername] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
-    const router = useRouter();
+    const { signin } = useContext(AuthContext);
 
     const handleSignIn = async () => {
         if (!username.trim()) {
@@ -45,9 +46,7 @@ const SignIn = () => {
                 throw new Error(data.message || "Sign in failed");
             }
 
-            localStorage.setItem("jwt", data.jwt);
-            localStorage.setItem("username", data.username);
-            router.push("/");
+            signin(data.jwt);
         } catch (err) {
             setError(err.message);
         } finally {
