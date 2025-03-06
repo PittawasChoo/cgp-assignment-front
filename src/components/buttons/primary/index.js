@@ -7,11 +7,12 @@ const IBMPlexSansThai = IBM_Plex_Sans_Thai({
     weight: "500",
 });
 
-const PrimaryButton = ({ children, className, loading }) => {
+const PrimaryButton = ({ children, className, loading, onClick }) => {
     return (
         <button
             type="submit"
             className={`btn btn-success ${IBMPlexSansThai.className} ${className}`}
+            onClick={onClick}
         >
             {loading && <span className="spinner-border spinner-border-sm" aria-hidden="true" />}
             {children}
