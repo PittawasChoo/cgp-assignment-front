@@ -1,0 +1,41 @@
+/* Default styles for desktop */
+.root {
+    background-color: var(--green500);
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.logo {
+    background-color: var(--green300);
+    height: 100vh;
+    width: 44%;
+    border-top-left-radius: 36px;
+    border-bottom-left-radius: 36px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+/* Tablet (≤ 1024px) */
+@media (max-width: 1024px) {
+}
+
+/* Mobile (≤ 768px) */
+@media (max-width: 768px) {
+    .root {
+        flex-direction: column-reverse;
+    }
+
+    .logo {
+        background-color: var(--green300);
+        height: 44%;
+        width: 100vw;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 36px;
+        border-bottom-right-radius: 36px;
+    }
+}
