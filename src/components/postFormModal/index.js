@@ -53,7 +53,9 @@ const PostFormModal = ({
                     <div className={`${BoldInterFont.className} modal-title`}>
                         {editForm ? "Edit Post" : "Create Post"}
                     </div>
-                    x
+                    <div onClick={onClose} style={{ cursor: "pointer" }}>
+                        x
+                    </div>
                 </div>
                 <Formik
                     enableReinitialize

@@ -10,7 +10,7 @@ const IBMPlexSansThai = IBM_Plex_Sans_Thai({
 const SecondaryButton = ({ children, className, loading, onClick }) => {
     return (
         <button
-            type="submit"
+            type="button"
             className={`btn btn-outline-success ${IBMPlexSansThai.className} ${className}`}
             onClick={onClick}
         >
