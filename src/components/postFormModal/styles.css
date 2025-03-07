@@ -1,0 +1,30 @@
+.custom-modal-container {
+    width: 685px;
+    max-width: 685px;
+}
+
+.custom-modal-body {
+    padding: 30px !important;
+}
+
+.modal-title {
+    font-size: 28px;
+}
+
+.modal-dropdown-btn {
+    width: 195px;
+    .active {
+        background-color: var(--green100) !important;
+        color: var(--black) !important;
+    }
+}
+
+.form-modal-text-area {
+    resize: none;
+    height: 234px;
+}
+
+.error-box {
+    border-radius: 0.375rem;
+    margin-bottom: 10px;
+}
