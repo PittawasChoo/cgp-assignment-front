@@ -3,6 +3,7 @@
         "paths": {
             "components/*": ["./src/components/*"],
             "context/*": ["./src/context/*"],
+            "constants/*": ["./src/constants/*"],
             "@/*": ["./src/*"]
         }
     }
