@@ -16,19 +16,19 @@
     cursor: pointer;
 }
 
-.owner-container {
+.post-owner-container {
     display: flex;
     gap: 10px;
     align-items: center;
     margin-bottom: 10px;
 }
 
-.owner-name {
+.post-owner-name {
     color: var(--text);
     font-size: 14px;
 }
 
-.post-when {
+.current-post-when {
     color: var(--grey300);
     font-size: 12px;
 }

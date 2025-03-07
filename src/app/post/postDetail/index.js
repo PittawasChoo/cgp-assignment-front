@@ -87,12 +87,12 @@ const PostDetail = ({ postId, post, fetchPost }) => {
             <div className="back-button" onClick={() => router.back()}>
                 <img src="/arrow-left.png" alt="go back" width={24} height={24} />
             </div>
-            <div className="owner-container">
+            <div className="post-owner-container">
                 <UserImage username={post.createdBy} size="xl" />
-                <span className={`${SemiBoldInterFont.className} owner-name`}>
+                <span className={`${SemiBoldInterFont.className} post-owner-name`}>
                     {post.createdBy}
                 </span>
-                <span className={`${InterFont.className} post-when`}>
+                <span className={`${InterFont.className} current-post-when`}>
                     {timeAgo(post.timestamp._seconds)}
                 </span>
             </div>
