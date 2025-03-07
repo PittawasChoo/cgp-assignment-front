@@ -45,21 +45,11 @@ export default function PostPage() {
         <div className="board-root">
             <Navbar />
             <div className="board-container">
-                <div style={{ width: "280px", minWidth: "280px" }}>
+                <div className="side-bar-container">
                     <Sidebar />
                 </div>
 
-                <div
-                    style={{
-                        flexShrink: 1,
-                        minHeight: "calc(100vh - 60px)",
-                        flex: 1,
-                        paddingTop: "36px",
-                        backgroundColor: "var(--white)",
-                        display: "flex",
-                        justifyContent: "center",
-                    }}
-                >
+                <div className="content-container">
                     {loading ? (
                         <Loading />
                     ) : (

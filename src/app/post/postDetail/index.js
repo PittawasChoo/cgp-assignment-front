@@ -5,17 +5,17 @@ import { Inter } from "next/font/google";
 import { useContext, useState } from "react";
 import { useRouter } from "next/navigation";
 
-import UserImage from "components/userImage";
 import Badge from "components/badge";
 import PrimaryButton from "components/buttons/primary";
+import SecondaryButton from "components/buttons/secondary";
+import UserImage from "components/userImage";
 
 import { AuthContext } from "context/authContext";
 
-import { timeAgo } from "@/utils/timeAgo";
+import { timeAgo } from "utils/timeAgo";
 
-import "./styles.css";
-import SecondaryButton from "components/buttons/secondary";
 import { validationSchema } from "./validationSchema";
+import "./styles.css";
 
 const InterFont = Inter({
     variable: "--font-inter",
@@ -82,91 +82,32 @@ const PostDetail = ({ postId, post, fetchPost }) => {
     };
 
     return (
-        <div style={{ width: 760, padding: "0 20px" }}>
-            <div
-                style={{
-                    width: "44px",
-                    height: "44px",
-                    marginBottom: "40px",
-                    backgroundColor: "var(--green100)",
-                    borderRadius: "50%",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    cursor: "pointer",
-                }}
-                onClick={() => router.push("/")}
-            >
+        <div className="post-detail-root">
+            <div className="back-button" onClick={() => router.push("/")}>
                 <img src="/arrow-left.png" alt="go back" width={24} height={24} />
             </div>
-            <div
-                style={{
-                    display: "flex",
-                    gap: "10px",
-                    alignItems: "center",
-                    marginBottom: "10px",
-                }}
-            >
+            <div className="owner-container">
                 <UserImage username={post.createdBy} size="xl" />
-                <span
-                    className={`${SemiBoldInterFont.className}`}
-                    style={{ color: "var(--text)", fontSize: "14px" }}
-                >
+                <span className={`${SemiBoldInterFont.className} owner-name`}>
                     {post.createdBy}
                 </span>
-                <span
-                    className={`${InterFont.className}`}
-                    style={{ color: "var(--grey300)", fontSize: "12px" }}
-                >
+                <span className={`${InterFont.className} post-when`}>
                     {timeAgo(post.timestamp._seconds)}
                 </span>
             </div>
             <Badge community={post.community} />
-            <div
-                className={`${BoldInterFont.className}`}
-                style={{
-                    fontSize: "16px",
-                    lineHeight: "24px",
-                    marginTop: "16px",
-                    color: "#101828",
-                }}
-            >
-                {post.title}
-            </div>
-            <div
-                className={`${InterFont.className}`}
-                style={{
-                    fontSize: "12px",
-                    lineHeight: "14px",
-                    marginTop: "16px",
-                    color: "var(--text)",
-                }}
-            >
-                {post.detail}
-            </div>
+            <div className={`${BoldInterFont.className} post-title`}>{post.title}</div>
+            <div className={`${InterFont.className} post-detail`}>{post.detail}</div>
             {post.comments.length > 0 && (
-                <div
-                    style={{
-                        display: "flex",
-                        alignItems: "center",
-                        marginTop: "28px",
-                    }}
-                >
+                <div className="comments-summary-container">
                     <img src="/comment.png" width={16} height={16} alt="comment" />
-                    <span
-                        className={`${InterFont.className}`}
-                        style={{
-                            marginLeft: "5px",
-                            fontSize: "12px",
-                            color: "var(--grey300)",
-                        }}
-                    >
+                    <span className={`${InterFont.className} comments-count`}>
                         {post.comments.length} Comments
                     </span>
                 </div>
             )}
 
-            <div style={{ marginTop: "32px" }}>
+            <div className="add-comment-container">
                 {showCommentField ? (
                     <Formik
                         enableReinitialize
@@ -180,7 +121,7 @@ const PostDetail = ({ postId, post, fetchPost }) => {
                     >
                         {(formProps) => (
                             <Form>
-                                <div style={{ marginBottom: "10px" }}>
+                                <div className="text-area-container">
                                     <textarea
                                         name="detail"
                                         className={`form-control post-text-area ${
@@ -204,13 +145,7 @@ const PostDetail = ({ postId, post, fetchPost }) => {
                                         {fetchingError}
                                     </div>
                                 )}
-                                <div
-                                    style={{
-                                        display: "flex",
-                                        justifyContent: "flex-end",
-                                        gap: "12px",
-                                    }}
-                                >
+                                <div className="buttons-container">
                                     <SecondaryButton onClick={() => setShowCommentField(false)}>
                                         Cancel
                                     </SecondaryButton>
@@ -236,51 +171,22 @@ const PostDetail = ({ postId, post, fetchPost }) => {
             </div>
 
             {post.comments.length > 0 && (
-                <div style={{ marginTop: "24px" }}>
+                <div className="comments-container">
                     {post.comments.map((comment, index) => (
-                        <div
-                            key={comment.id}
-                            style={{
-                                display: "flex",
-                                gap: "10px",
-                                marginBottom: "24px",
-                            }}
-                        >
-                            <div style={{ width: "40px" }}>
+                        <div key={comment.id} className="comment-container">
+                            <div className="comment-user-img-container">
                                 <UserImage username={comment.createdBy} />
                             </div>
                             <div>
-                                <div
-                                    style={{
-                                        display: "flex",
-                                        height: "40px",
-                                        alignItems: "center",
-                                        gap: "10px",
-                                    }}
-                                >
-                                    <div
-                                        className={`${SemiBoldInterFont.className}`}
-                                        style={{
-                                            fontSize: "14px",
-                                            color: "var(--text)",
-                                        }}
-                                    >
+                                <div className="comment-header-container">
+                                    <div className={`${SemiBoldInterFont.className} comment-name`}>
                                         {comment.createdBy}
                                     </div>
-                                    <div
-                                        className={`${InterFont.className}`}
-                                        style={{
-                                            fontSize: "12px",
-                                            color: "var(--grey300)",
-                                        }}
-                                    >
+                                    <div className={`${InterFont.className} comment-when`}>
                                         {timeAgo(comment.timestamp._seconds)}
                                     </div>
                                 </div>
-                                <div
-                                    className={`${InterFont.className}`}
-                                    style={{ fontSize: "12px", color: "var(--text)" }}
-                                >
+                                <div className={`${InterFont.className} comment-detail`}>
                                     {comment.detail}
                                 </div>
                             </div>

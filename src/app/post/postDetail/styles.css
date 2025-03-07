@@ -1,15 +1,74 @@
 /* Default styles for desktop */
-.board-root {
-    background-color: var(--grey100);
-    min-height: 100vh;
-    width: 100vw;
-    margin: 0;
-    padding: 0;
-    position: relative;
+.post-detail-root {
+    width: 760px;
+    padding: 0 20px;
+}
+
+.back-button {
+    width: 44px;
+    height: 44px;
+    margin-bottom: 40px;
+    background-color: var(--green100);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.owner-container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.owner-name {
+    color: var(--text);
+    font-size: 14px;
+}
+
+.post-when {
+    color: var(--grey300);
+    font-size: 12px;
+}
+
+.post-title {
+    font-size: 16px;
+    line-height: 24px;
+    margin-top: 16px;
+    color: #101828;
+}
+
+.post-detail {
+    font-size: 12px;
+    line-height: 14px;
+    margin-top: 16px;
+    color: var(--text);
+}
+
+.comments-summary-container {
+    display: flex;
+    align-items: center;
+    margin-top: 28px;
+}
+
+.comments-count {
+    margin-left: 5px;
+    font-size: 12px;
+    color: var(--grey300);
+}
+
+.add-comment-container {
+    margin-top: 32px;
 }
 
 .custom-secondary-btn {
     font-size: 14px;
+}
+
+.text-area-container {
+    margin-bottom: 10px;
 }
 
 .post-text-area {
@@ -22,34 +81,46 @@
     margin-bottom: 10px;
 }
 
-.board-container {
+.buttons-container {
     display: flex;
-    padding-top: 60px;
-    min-height: 100%;
-    justify-content: space-between;
+    justify-content: flex-end;
+    gap: 12px;
 }
 
-.create-btn {
-    width: 105px;
+.comments-container {
+    margin-top: 24px;
 }
 
-.right-space {
-    width: 280px;
-    flex-shrink: 2;
+.comment-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 24px;
 }
 
-.dropdown-btn button {
-    color: var(--black) !important;
-    border: 0 !important;
+.comment-user-img-container {
+    width: 40px;
 }
 
-.dropdown-btn {
-    width: 120px;
-    margin: "0 10px 0 20px";
-    .active {
-        background-color: var(--green100) !important;
-        color: var(--black) !important;
-    }
+.comment-header-container {
+    display: flex;
+    height: 40px;
+    align-items: center;
+    gap: 10px;
+}
+
+.comment-name {
+    font-size: 14px;
+    color: var(--text);
+}
+
+.comment-when {
+    font-size: 12px;
+    color: var(--grey300);
+}
+
+.comment-detail {
+    font-size: 12px;
+    color: var(--text);
 }
 
 /* Mobile (≤ 768px) */
