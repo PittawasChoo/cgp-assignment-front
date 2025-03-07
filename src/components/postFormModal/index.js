@@ -69,100 +69,93 @@ const PostFormModal = ({
                         });
                     }}
                 >
-                    {(formProps) => {
-                        console.log("formProps", formProps);
-                        return (
-                            <Form>
-                                <DropdownButton
-                                    name="community"
-                                    as={ButtonGroup}
-                                    variant={
-                                        formProps.touched["community"] &&
-                                        formProps.errors["community"]
-                                            ? "outline-danger"
-                                            : "outline-success"
-                                    }
-                                    title={inputCommunity || "Choose a community"}
-                                    className={`modal-dropdown-btn ${
-                                        formProps.touched["community"] &&
-                                        formProps.errors["community"]
+                    {(formProps) => (
+                        <Form>
+                            <DropdownButton
+                                name="community"
+                                as={ButtonGroup}
+                                variant={
+                                    formProps.touched["community"] && formProps.errors["community"]
+                                        ? "outline-danger"
+                                        : "outline-success"
+                                }
+                                title={inputCommunity || "Choose a community"}
+                                className={`modal-dropdown-btn ${
+                                    formProps.touched["community"] && formProps.errors["community"]
+                                        ? "is-invalid"
+                                        : ""
+                                }`}
+                            >
+                                {COMMUNITY_OPTIONS.map((option) => (
+                                    <Dropdown.Item
+                                        key={option}
+                                        onClick={() => {
+                                            formProps.setFieldValue("community", option);
+                                            setInputCommunity(option);
+                                        }}
+                                        active={inputCommunity === option}
+                                    >
+                                        {option}
+                                    </Dropdown.Item>
+                                ))}
+                            </DropdownButton>
+                            <div id="validationTitle" className="invalid-feedback">
+                                Please provide post community scope.
+                            </div>
+                            <div style={{ margin: "14px 0" }}>
+                                <input
+                                    name="title"
+                                    type="text"
+                                    className={`form-control ${
+                                        formProps.touched["title"] && formProps.errors["title"]
                                             ? "is-invalid"
                                             : ""
                                     }`}
-                                >
-                                    {COMMUNITY_OPTIONS.map((option) => (
-                                        <Dropdown.Item
-                                            key={option}
-                                            onClick={() => {
-                                                formProps.setFieldValue("community", option);
-                                                setInputCommunity(option);
-                                            }}
-                                            active={inputCommunity === option}
-                                        >
-                                            {option}
-                                        </Dropdown.Item>
-                                    ))}
-                                </DropdownButton>
-                                <div id="validationTitle" className="invalid-feedback">
-                                    Please provide post community scope.
-                                </div>
-                                <div style={{ margin: "14px 0" }}>
-                                    <input
-                                        name="title"
-                                        type="text"
-                                        className={`form-control ${
-                                            formProps.touched["title"] && formProps.errors["title"]
-                                                ? "is-invalid"
-                                                : ""
-                                        }`}
-                                        placeholder="Title"
-                                        value={inputTitle}
-                                        onChange={(e) => {
-                                            formProps.setFieldValue("title", e.target.value);
-                                            setInputTitle(e.target.value);
-                                        }}
-                                    />
-                                    <div id="validationTitle" className="invalid-feedback">
-                                        Please provide post title.
-                                    </div>
-                                </div>
-                                <div style={{ marginBottom: "10px" }}>
-                                    <textarea
-                                        name="detail"
-                                        className={`form-control form-modal-text-area ${
-                                            formProps.touched["detail"] &&
-                                            formProps.errors["detail"] &&
-                                            "is-invalid"
-                                        }`}
-                                        placeholder="What's on your mind..."
-                                        value={inputDetail}
-                                        onChange={(e) => {
-                                            formProps.setFieldValue("detail", e.target.value);
-                                            setInputDetail(e.target.value);
-                                        }}
-                                    />
-                                    <div id="validationDetail" className="invalid-feedback">
-                                        Please provide post content.
-                                    </div>
-                                </div>
-                                {error && (
-                                    <div className="bg-danger text-white p-3 error-box">
-                                        {error}
-                                    </div>
-                                )}
-                                <div
-                                    style={{
-                                        display: "flex",
-                                        justifyContent: "flex-end",
-                                        gap: "12px",
+                                    placeholder="Title"
+                                    value={inputTitle}
+                                    onChange={(e) => {
+                                        formProps.setFieldValue("title", e.target.value);
+                                        setInputTitle(e.target.value);
                                     }}
-                                >
-                                    <SecondaryButton onClick={onClose}>Cancel</SecondaryButton>
-                                    <PrimaryButton loading={loading}>Post</PrimaryButton>
+                                />
+                                <div id="validationTitle" className="invalid-feedback">
+                                    Please provide post title.
                                 </div>
-                            </Form>
-                        );
-                    }}
+                            </div>
+                            <div style={{ marginBottom: "10px" }}>
+                                <textarea
+                                    name="detail"
+                                    className={`form-control form-modal-text-area ${
+                                        formProps.touched["detail"] &&
+                                        formProps.errors["detail"] &&
+                                        "is-invalid"
+                                    }`}
+                                    placeholder="What's on your mind..."
+                                    value={inputDetail}
+                                    onChange={(e) => {
+                                        formProps.setFieldValue("detail", e.target.value);
+                                        setInputDetail(e.target.value);
+                                    }}
+                                />
+                                <div id="validationDetail" className="invalid-feedback">
+                                    Please provide post content.
+                                </div>
+                            </div>
+                            {error && (
+                                <div className="bg-danger text-white p-3 error-box">{error}</div>
+                            )}
+                            <div
+                                style={{
+                                    display: "flex",
+                                    justifyContent: "flex-end",
+                                    gap: "12px",
+                                }}
+                            >
+                                <SecondaryButton onClick={onClose}>Cancel</SecondaryButton>
+                                <PrimaryButton loading={loading}>Post</PrimaryButton>
+                            </div>
+                        </Form>
+                    )}
                 </Formik>
             </ReactBoostrapModal.Body>
         </ReactBoostrapModal>
