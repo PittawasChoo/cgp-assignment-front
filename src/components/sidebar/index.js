@@ -13,15 +13,7 @@ const Sidebar = () => {
     const router = useRouter();
 
     return (
-        <div
-            style={{
-                height: "calc(100vh - 60px)",
-                width: "280px",
-                backgroundColor: "var(--grey100)",
-                position: "fixed",
-                padding: "40px 28px",
-            }}
-        >
+        <div className="side-bar-root">
             <div
                 className={`${InterFont.className} side-bar-button`}
                 onClick={() => router.push("/")}

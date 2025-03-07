@@ -17,6 +17,13 @@ const InterFont = Inter({
     weight: "600",
 });
 
+const OffCanvasStyles = {
+    backgroundColor: "var(--green500)",
+    color: "var(--white)",
+    width: "280px",
+    padding: "38px 33px",
+};
+
 const userButton = ({ username }) => {
     const [isOpen, setIsOpen] = useState(false);
     const router = useRouter();
@@ -33,12 +40,7 @@ const userButton = ({ username }) => {
                 show={isOpen}
                 onHide={() => setIsOpen(false)}
                 placement="end"
-                style={{
-                    backgroundColor: "var(--green500)",
-                    color: "var(--white)",
-                    width: "280px",
-                    padding: "38px 33px",
-                }}
+                style={OffCanvasStyles}
             >
                 <img
                     src="/arrow-right.png"

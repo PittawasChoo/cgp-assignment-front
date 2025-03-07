@@ -42,18 +42,11 @@ const PostFormModal = ({
     return (
         <ReactBoostrapModal show={isOpen} onHide={onClose} dialogClassName="custom-modal-container">
             <ReactBoostrapModal.Body className="custom-modal-body">
-                <div
-                    style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        color: "var(--black)",
-                        marginBottom: "30px",
-                    }}
-                >
+                <div className="header-container">
                     <div className={`${BoldInterFont.className} modal-title`}>
                         {editForm ? "Edit Post" : "Create Post"}
                     </div>
-                    <div onClick={onClose} style={{ cursor: "pointer" }}>
+                    <div onClick={onClose} className="close-button">
                         x
                     </div>
                 </div>
@@ -102,7 +95,7 @@ const PostFormModal = ({
                             <div id="validationTitle" className="invalid-feedback">
                                 Please provide post community scope.
                             </div>
-                            <div style={{ margin: "14px 0" }}>
+                            <div className="title-field-container">
                                 <input
                                     name="title"
                                     type="text"
@@ -122,7 +115,7 @@ const PostFormModal = ({
                                     Please provide post title.
                                 </div>
                             </div>
-                            <div style={{ marginBottom: "10px" }}>
+                            <div className="detail-field-container">
                                 <textarea
                                     name="detail"
                                     className={`form-control form-modal-text-area ${
@@ -144,13 +137,7 @@ const PostFormModal = ({
                             {error && (
                                 <div className="bg-danger text-white p-3 error-box">{error}</div>
                             )}
-                            <div
-                                style={{
-                                    display: "flex",
-                                    justifyContent: "flex-end",
-                                    gap: "12px",
-                                }}
-                            >
+                            <div className="buttons-container">
                                 <SecondaryButton onClick={onClose}>Cancel</SecondaryButton>
                                 <PrimaryButton loading={loading}>Post</PrimaryButton>
                             </div>

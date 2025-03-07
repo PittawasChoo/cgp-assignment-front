@@ -1,3 +1,11 @@
+.side-bar-root {
+    height: calc(100vh - 60px);
+    width: 280px;
+    background-color: var(--grey100);
+    position: fixed;
+    padding: 40px 28px;
+}
+
 .side-bar-button {
     color: var(--black);
     display: flex;

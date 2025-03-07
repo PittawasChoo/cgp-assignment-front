@@ -1,0 +1,18 @@
+.error-page-root {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.error-page-content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.error-text {
+    margin-bottom: 40px;
+    font-size: 40px;
+}

@@ -1,0 +1,13 @@
+.badge-root {
+    text-transform: capitalize;
+    font-size: 12px;
+    height: 24px;
+    padding: 4px 8px;
+    background-color: #f3f3f3;
+    color: #4a4a4a;
+    border-radius: 16px;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

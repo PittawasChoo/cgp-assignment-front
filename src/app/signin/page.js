@@ -69,15 +69,7 @@ const SignIn = () => {
 
     return (
         <div className="sign-in-root">
-            <div
-                style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    flex: 1,
-                    padding: "16px",
-                }}
-            >
+            <div className="custom-form-container">
                 <form
                     onSubmit={(e) => {
                         e.preventDefault();
