@@ -4,6 +4,7 @@ import { Formik, Form } from "formik";
 import { Inter } from "next/font/google";
 import { useContext, useState } from "react";
 import { useRouter } from "next/navigation";
+import pluralize from "pluralize";
 
 import Badge from "components/badge";
 import PrimaryButton from "components/buttons/primary";
@@ -83,7 +84,7 @@ const PostDetail = ({ postId, post, fetchPost }) => {
 
     return (
         <div className="post-detail-root">
-            <div className="back-button" onClick={() => router.push("/")}>
+            <div className="back-button" onClick={() => router.back()}>
                 <img src="/arrow-left.png" alt="go back" width={24} height={24} />
             </div>
             <div className="owner-container">
@@ -98,14 +99,12 @@ const PostDetail = ({ postId, post, fetchPost }) => {
             <Badge community={post.community} />
             <div className={`${BoldInterFont.className} post-title`}>{post.title}</div>
             <div className={`${InterFont.className} post-detail`}>{post.detail}</div>
-            {post.comments.length > 0 && (
-                <div className="comments-summary-container">
-                    <img src="/comment.png" width={16} height={16} alt="comment" />
-                    <span className={`${InterFont.className} comments-count`}>
-                        {post.comments.length} Comments
-                    </span>
-                </div>
-            )}
+            <div className="comments-summary-container">
+                <img src="/comment.png" width={16} height={16} alt="comment" />
+                <span className={`${InterFont.className} comments-count`}>
+                    {post.comments.length} {pluralize("Comment", post.comments.length)}
+                </span>
+            </div>
 
             <div className="add-comment-container">
                 {showCommentField ? (
@@ -141,7 +140,7 @@ const PostDetail = ({ postId, post, fetchPost }) => {
                                     </div>
                                 </div>
                                 {fetchingError && (
-                                    <div className="bg-danger text-white p-3 error-box">
+                                    <div className="bg-danger text-white p-3 comment-error-box">
                                         {fetchingError}
                                     </div>
                                 )}

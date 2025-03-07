@@ -2,7 +2,7 @@
 
 import { Formik, Form } from "formik";
 import { Inter } from "next/font/google";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
@@ -26,27 +26,46 @@ const PostFormModal = ({
     isOpen,
     onClose,
     onSubmit,
+    title,
+    detail,
+    community,
+    editForm = false,
     loading = false,
     error = "",
-    editForm = false,
-    title = "",
-    detail = "",
-    community = "",
 }) => {
-    const [inputTitle, setInputTitle] = useState(title || "");
-    const [inputDetail, setInputDetail] = useState(detail || "");
-    const [inputCommunity, setInputCommunity] = useState(community || "");
+    const [inputTitle, setInputTitle] = useState(title);
+    const [inputDetail, setInputDetail] = useState(detail);
+    const [inputCommunity, setInputCommunity] = useState(community);
 
     const initialValues = { community, title, detail };
 
+    useEffect(() => {
+        setInputTitle(title);
+        setInputDetail(detail);
+        setInputCommunity(community);
+    }, [title, detail, community]);
+
+    const handleCloseModal = () => {
+        // clear state
+        setInputTitle("");
+        setInputDetail("");
+        setInputCommunity("");
+
+        onClose();
+    };
+
     return (
-        <ReactBoostrapModal show={isOpen} onHide={onClose} dialogClassName="custom-modal-container">
+        <ReactBoostrapModal
+            show={isOpen}
+            onHide={handleCloseModal}
+            dialogClassName="custom-modal-container"
+        >
             <ReactBoostrapModal.Body className="custom-modal-body">
                 <div className="header-container">
                     <div className={`${BoldInterFont.className} modal-title`}>
                         {editForm ? "Edit Post" : "Create Post"}
                     </div>
-                    <div onClick={onClose} className="close-button">
+                    <div onClick={handleCloseModal} className="close-button">
                         x
                     </div>
                 </div>
@@ -135,7 +154,9 @@ const PostFormModal = ({
                                 </div>
                             </div>
                             {error && (
-                                <div className="bg-danger text-white p-3 error-box">{error}</div>
+                                <div className="bg-danger text-white p-3 form-modal-error-box">
+                                    {error}
+                                </div>
                             )}
                             <div className="buttons-container">
                                 <SecondaryButton onClick={onClose}>Cancel</SecondaryButton>

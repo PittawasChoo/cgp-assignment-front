@@ -2,7 +2,7 @@
 
 import { Inter } from "next/font/google";
 import { useContext, useEffect, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 import LogoText from "components/logoText";
 import PrimaryButton from "components/buttons/primary";
@@ -22,15 +22,13 @@ const SignIn = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const { signin } = useContext(AuthContext);
-    const searchParams = useSearchParams();
-    const redirectTo = searchParams.get("redirect") || "/";
     const router = useRouter();
 
     useEffect(() => {
         if (typeof window !== "undefined") {
             const token = localStorage.getItem("authToken");
             if (token) {
-                router.replace(redirectTo);
+                router.back();
             }
         }
     }, []);
@@ -59,7 +57,8 @@ const SignIn = () => {
                 throw new Error(data.message || "Sign in failed");
             }
 
-            signin(data.jwt, redirectTo);
+            signin(data.jwt);
+            router.back();
         } catch (err) {
             setError(err.message);
         } finally {
@@ -85,7 +84,9 @@ const SignIn = () => {
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                     />
-                    {error && <div className="bg-danger text-white p-3 error-box">{error}</div>}
+                    {error && (
+                        <div className="bg-danger text-white p-3 sign-in-error-box">{error}</div>
+                    )}
                     <PrimaryButton className="long-sign-in-btn" loading={loading}>
                         Sign In
                     </PrimaryButton>
