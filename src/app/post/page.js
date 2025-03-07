@@ -39,7 +39,7 @@ export default function PostPage() {
         fetchPost();
     }, [postId]);
 
-    if (!error) return <ErrorPage refetch={fetchPost} />;
+    if (error) return <ErrorPage refetch={fetchPost} />;
 
     return (
         <div className="board-root">

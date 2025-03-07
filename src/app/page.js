@@ -116,7 +116,7 @@ const Home = () => {
 
     const filteredPosts = getFilteredPosts();
 
-    if (!error) return <ErrorPage refetch={fetchPosts} />;
+    if (error) return <ErrorPage refetch={fetchPosts} />;
 
     return (
         <div className="board-root">
