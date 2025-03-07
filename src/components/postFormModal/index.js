@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
-import ReactBoostrapModal from "react-bootstrap/Modal";
+import Modal from "react-bootstrap/Modal";
 
 import PrimaryButton from "components/buttons/primary";
 import SecondaryButton from "components/buttons/secondary";
@@ -55,12 +55,13 @@ const PostFormModal = ({
     };
 
     return (
-        <ReactBoostrapModal
+        <Modal
             show={isOpen}
             onHide={handleCloseModal}
             dialogClassName="custom-modal-container"
+            centered
         >
-            <ReactBoostrapModal.Body className="custom-modal-body">
+            <Modal.Body className="custom-modal-body">
                 <div className="header-container">
                     <div className={`${BoldInterFont.className} modal-title`}>
                         {editForm ? "Edit Post" : "Create Post"}
@@ -165,8 +166,8 @@ const PostFormModal = ({
                         </Form>
                     )}
                 </Formik>
-            </ReactBoostrapModal.Body>
-        </ReactBoostrapModal>
+            </Modal.Body>
+        </Modal>
     );
 };
 

@@ -1,0 +1,52 @@
+/* Default styles for desktop */
+.filter-container {
+    display: flex;
+    height: 40px;
+    margin-bottom: 24px;
+    align-items: center;
+}
+
+.search-container {
+    height: 40px;
+    color: #5b5b5b;
+    flex: 1;
+    background: transparent !important;
+}
+
+.search-box {
+    height: 40px;
+    border: 1px solid #d8e9e4;
+    background: transparent !important;
+}
+
+.search-input {
+    height: 40px;
+    background: transparent !important;
+    margin: 0 !important;
+}
+
+.search-input:focus {
+    background: transparent !important;
+}
+
+.dropdown-btn {
+    width: 120px;
+    margin: 0 10px 0 20px;
+    .active {
+        background-color: var(--green100) !important;
+        color: var(--black) !important;
+    }
+}
+
+.dropdown-btn button {
+    color: var(--black) !important;
+    border: 0 !important;
+}
+
+.create-btn {
+    width: 105px;
+}
+
+/* Mobile (≤ 768px) */
+@media (max-width: 768px) {
+}
