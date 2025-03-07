@@ -4,6 +4,10 @@
     cursor: pointer;
 }
 
+.mobile-button-root {
+    display: none;
+}
+
 .slide-pane-arrow-icon {
     width: 30px;
     cursor: pointer;
@@ -26,4 +30,15 @@
 
 .name {
     margin-right: 20px;
+}
+
+/* Mobile (≤ 768px) */
+@media (max-width: 768px) {
+    .user-button-root {
+        display: none;
+    }
+
+    .mobile-button-root {
+        display: block;
+    }
 }

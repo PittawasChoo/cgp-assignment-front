@@ -1,0 +1,48 @@
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    color: var(--black);
+    margin-bottom: 20px;
+}
+
+.close-button {
+    cursor: pointer;
+}
+
+.modal-title {
+    font-size: 20px;
+}
+
+.text-area-container {
+    margin-bottom: 30px;
+}
+
+.post-text-area {
+    resize: none;
+    height: 120px;
+}
+
+.comment-error-box {
+    border-radius: 0.375rem;
+    margin-bottom: 10px;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+@media (max-width: 717px) {
+    .comment-modal-container {
+        margin-left: 20px;
+        width: calc(100vw - 32px);
+        max-width: calc(100vw - 32px);
+    }
+}
+
+@media (max-width: 475px) {
+    .buttons-container {
+        flex-direction: column;
+    }
+}

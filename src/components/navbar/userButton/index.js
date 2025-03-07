@@ -36,6 +36,10 @@ const userButton = ({ username }) => {
                 <UserImage username={username} />
             </div>
 
+            <div className="mobile-button-root" onClick={() => setIsOpen(true)}>
+                <img src="/hamburger.png" width={24} height={24} alt="menu" />
+            </div>
+
             <Offcanvas
                 show={isOpen}
                 onHide={() => setIsOpen(false)}

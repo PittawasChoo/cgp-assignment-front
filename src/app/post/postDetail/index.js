@@ -17,6 +17,7 @@ import { timeAgo } from "utils/timeAgo";
 
 import { validationSchema } from "./validationSchema";
 import "./styles.css";
+import CommentFormModal from "components/commentFormModal";
 
 const InterFont = Inter({
     variable: "--font-inter",
@@ -38,6 +39,7 @@ const BoldInterFont = Inter({
 
 const PostDetail = ({ postId, post, fetchPost }) => {
     const [showCommentField, setShowCommentField] = useState(false);
+    const [showCommentFieldModal, setShowCommentFieldModal] = useState(false);
     const [detail, setDetail] = useState("");
     const [fetching, setFetching] = useState(false);
     const [fetchingError, setFetchingError] = useState("");
@@ -145,7 +147,12 @@ const PostDetail = ({ postId, post, fetchPost }) => {
                                     </div>
                                 )}
                                 <div className="buttons-container">
-                                    <SecondaryButton onClick={() => setShowCommentField(false)}>
+                                    <SecondaryButton
+                                        onClick={() => {
+                                            setDetail("");
+                                            setShowCommentField(false);
+                                        }}
+                                    >
                                         Cancel
                                     </SecondaryButton>
                                     <PrimaryButton loading={fetching}>Post</PrimaryButton>
@@ -159,8 +166,13 @@ const PostDetail = ({ postId, post, fetchPost }) => {
                         onClick={() => {
                             if (!username) {
                                 router.push("/signin");
-                            } else {
-                                setShowCommentField(true);
+                            }
+                            if (typeof window !== "undefined") {
+                                if (window.innerWidth > 768) {
+                                    setShowCommentField(true);
+                                } else {
+                                    setShowCommentFieldModal(true);
+                                }
                             }
                         }}
                     >
@@ -168,6 +180,21 @@ const PostDetail = ({ postId, post, fetchPost }) => {
                     </SecondaryButton>
                 )}
             </div>
+
+            <CommentFormModal
+                isOpen={showCommentFieldModal}
+                onSubmit={onSubmit}
+                onClose={() => {
+                    setDetail("");
+                    setShowCommentFieldModal(false);
+                }}
+                fetching={fetching}
+                fetchingError={fetchingError}
+                initialValues={initialValues}
+                validationSchema={validationSchema}
+                detail={detail}
+                setDetail={setDetail}
+            />
 
             {post.comments.length > 0 && (
                 <div className="comments-container">

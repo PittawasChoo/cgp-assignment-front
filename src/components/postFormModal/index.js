@@ -67,7 +67,7 @@ const PostFormModal = ({
                         {editForm ? "Edit Post" : "Create Post"}
                     </div>
                     <div onClick={handleCloseModal} className="close-button">
-                        x
+                        <img src="/close.png" alt="close" width={24} height={24} />
                     </div>
                 </div>
                 <Formik
@@ -83,7 +83,7 @@ const PostFormModal = ({
                     }}
                 >
                     {(formProps) => (
-                        <Form>
+                        <Form className="post-form-container">
                             <DropdownButton
                                 name="community"
                                 as={ButtonGroup}

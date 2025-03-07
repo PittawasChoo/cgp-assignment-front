@@ -11,7 +11,7 @@
 }
 
 .delete-button {
-    width: 170px;
+    flex: 1;
 }
 
 .delete-modal-error-box {
@@ -40,4 +40,23 @@
 .delete-buttons-container {
     display: flex;
     justify-content: space-between;
+    gap: 12px;
+}
+
+@media (max-width: 575px) {
+    .delete-modal-container {
+        margin-left: 20px;
+        width: calc(100vw - 32px);
+        max-width: calc(100vw - 32px);
+    }
+}
+
+@media (max-width: 475px) {
+    .delete-modal-text-h2 {
+        margin-bottom: 24px;
+    }
+
+    .delete-buttons-container {
+        flex-direction: column-reverse;
+    }
 }

@@ -122,4 +122,15 @@
 
 /* Mobile (≤ 768px) */
 @media (max-width: 768px) {
+    .side-bar-container {
+        display: none;
+    }
+
+    .right-space {
+        display: none;
+    }
+
+    .board-content-container {
+        padding: 47px 16px 34px 16px;
+    }
 }

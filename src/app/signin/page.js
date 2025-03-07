@@ -70,6 +70,7 @@ const SignIn = () => {
         <div className="sign-in-root">
             <div className="custom-form-container">
                 <form
+                    className="custom-form-style"
                     onSubmit={(e) => {
                         e.preventDefault();
                         handleSignIn();

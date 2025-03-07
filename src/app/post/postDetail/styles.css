@@ -1,6 +1,7 @@
 /* Default styles for desktop */
 .post-detail-root {
-    width: 760px;
+    width: 100%;
+    max-width: 760px;
     padding: 0 20px;
 }
 
@@ -121,8 +122,4 @@
 .comment-detail {
     font-size: 12px;
     color: var(--text);
-}
-
-/* Mobile (≤ 768px) */
-@media (max-width: 768px) {
 }

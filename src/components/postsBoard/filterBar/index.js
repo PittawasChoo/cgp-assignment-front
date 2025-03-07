@@ -1,6 +1,7 @@
 "use client";
 
 import { useContext } from "react";
+import { useRouter } from "next/navigation";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
@@ -15,6 +16,7 @@ import "./styles.css";
 
 const FilterBar = ({ search, setSearch, selectedCommunity, setSelectedCommunity, setModal }) => {
     const { username } = useContext(AuthContext);
+    const router = useRouter();
 
     return (
         <div className="filter-container">
