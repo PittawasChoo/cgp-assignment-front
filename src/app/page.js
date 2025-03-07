@@ -20,6 +20,8 @@ import { FILTER_COMMUNITY_OPTIONS } from "constants/communityOptions";
 import { AuthContext } from "context/authContext";
 
 import "./styles.css";
+import Loading from "components/loading";
+import ErrorPage from "components/errorPage";
 
 const InterFont = Inter({
     variable: "--font-inter",
@@ -33,33 +35,33 @@ const BoldInterFont = Inter({
     weight: "600",
 });
 
-const Board = () => {
+const Home = () => {
     const [selectedCommunity, setSelectedCommunity] = useState("All");
     const [isOpen, setIsOpen] = useState(false);
     const [posts, setPosts] = useState([]);
     const [search, setSearch] = useState("");
-    //   const [loading, setLoading] = useState(true);
-    // const [error, setError] = useState("");
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
     const [fetching, setFetching] = useState(false);
     const [fetchingError, setFetchingError] = useState("");
     const router = useRouter();
     const { username } = useContext(AuthContext);
 
+    const fetchPosts = async () => {
+        try {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/post`);
+            if (!res.ok) throw new Error("Failed to fetch posts");
+
+            const data = await res.json();
+            setPosts(data);
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
     useEffect(() => {
-        const fetchPosts = async () => {
-            try {
-                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/post`);
-                if (!res.ok) throw new Error("Failed to fetch posts");
-
-                const data = await res.json();
-                setPosts(data);
-            } catch (err) {
-                // setError(err.message);
-            } finally {
-                // setLoading(false);
-            }
-        };
-
         fetchPosts();
     }, []);
 
@@ -104,17 +106,17 @@ const Board = () => {
         }
 
         const searchLowerCase = search.toLowerCase();
-        console.log("searchLoweCase", searchLowerCase);
 
         const matchedPosts = posts.filter((post) =>
             post.title.toLowerCase().match(searchLowerCase)
         );
-        console.log("matchedPosts", matchedPosts);
 
         return matchedPosts;
     };
 
     const filteredPosts = getFilteredPosts();
+
+    if (!error) return <ErrorPage refetch={fetchPosts} />;
 
     return (
         <div className="board-root">
@@ -202,93 +204,99 @@ const Board = () => {
                             error={fetchingError}
                         />
                     </div>
-
-                    <div
-                        style={{
-                            backgroundColor: "var(--white)",
-                            borderRadius: "12px",
-                        }}
-                    >
-                        {filteredPosts.map((post, index) => (
-                            <Link href={`/post?id=${post.id}`} key={post.id}>
-                                <div
-                                    style={{
-                                        padding: "20px 22px",
-                                        borderBottom:
-                                            index === filteredPosts.length - 1
-                                                ? "0"
-                                                : "1px solid var(--grey100)",
-                                    }}
-                                >
+                    {loading ? (
+                        <Loading />
+                    ) : (
+                        <div
+                            style={{
+                                backgroundColor: "var(--white)",
+                                borderRadius: "12px",
+                            }}
+                        >
+                            {filteredPosts.map((post, index) => (
+                                <Link href={`/post?id=${post.id}`} key={post.id}>
                                     <div
                                         style={{
-                                            display: "flex",
-                                            gap: "10px",
-                                            alignItems: "center",
-                                            marginBottom: "15px",
+                                            padding: "20px 22px",
+                                            borderBottom:
+                                                index === filteredPosts.length - 1
+                                                    ? "0"
+                                                    : "1px solid var(--grey100)",
                                         }}
                                     >
-                                        <UserImage username={post.createdBy} size="sm" />
-                                        <span
-                                            className={`${InterFont.className}`}
-                                            style={{ color: "var(--grey300)", fontSize: "14px" }}
-                                        >
-                                            {post.createdBy}
-                                        </span>
-                                    </div>
-                                    <Badge community={post.community} />
-                                    <div
-                                        className={`${BoldInterFont.className}`}
-                                        style={{
-                                            fontSize: "16px",
-                                            lineHeight: "24px",
-                                            marginTop: "5px",
-                                            color: "#101828",
-                                        }}
-                                    >
-                                        {post.title}
-                                    </div>
-                                    <div
-                                        className={`${InterFont.className} post-detail-truncate`}
-                                        style={{
-                                            fontSize: "12px",
-                                            lineHeight: "14px",
-                                            marginTop: "2px",
-                                            color: "#101828",
-                                        }}
-                                    >
-                                        {post.detail}
-                                    </div>
-                                    {post.commentsCount > 0 && (
                                         <div
                                             style={{
                                                 display: "flex",
+                                                gap: "10px",
                                                 alignItems: "center",
-                                                marginTop: "10px",
+                                                marginBottom: "15px",
                                             }}
                                         >
-                                            <img
-                                                src="/comment.png"
-                                                width={16}
-                                                height={16}
-                                                alt="comment"
-                                            />
+                                            <UserImage username={post.createdBy} size="sm" />
                                             <span
                                                 className={`${InterFont.className}`}
                                                 style={{
-                                                    marginLeft: "5px",
-                                                    fontSize: "12px",
                                                     color: "var(--grey300)",
+                                                    fontSize: "14px",
                                                 }}
                                             >
-                                                {post.commentsCount} Comments
+                                                {post.createdBy}
                                             </span>
                                         </div>
-                                    )}
-                                </div>
-                            </Link>
-                        ))}
-                    </div>
+                                        <Badge community={post.community} />
+                                        <div
+                                            className={`${BoldInterFont.className}`}
+                                            style={{
+                                                fontSize: "16px",
+                                                lineHeight: "24px",
+                                                marginTop: "5px",
+                                                color: "#101828",
+                                            }}
+                                        >
+                                            {post.title}
+                                        </div>
+                                        <div
+                                            className={`${InterFont.className} post-detail-truncate`}
+                                            style={{
+                                                fontSize: "12px",
+                                                lineHeight: "14px",
+                                                marginTop: "2px",
+                                                color: "#101828",
+                                            }}
+                                        >
+                                            {post.detail}
+                                        </div>
+                                        {post.commentsCount > 0 && (
+                                            <div
+                                                style={{
+                                                    display: "flex",
+                                                    alignItems: "center",
+                                                    marginTop: "10px",
+                                                }}
+                                            >
+                                                <img
+                                                    src="/comment.png"
+                                                    width={16}
+                                                    height={16}
+                                                    alt="comment"
+                                                />
+                                                <span
+                                                    className={`${InterFont.className}`}
+                                                    style={{
+                                                        marginLeft: "5px",
+                                                        fontSize: "12px",
+                                                        color: "var(--grey300)",
+                                                    }}
+                                                >
+                                                    {post.commentsCount} Comments
+                                                </span>
+                                            </div>
+                                        )}
+                                    </div>
+                                </Link>
+                            ))}
+                        </div>
+                    )}
                 </div>
                 <div className="right-space"></div>
             </div>
@@ -296,4 +304,4 @@ const Board = () => {
     );
 };
 
-export default Board;
+export default Home;
