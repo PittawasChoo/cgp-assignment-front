@@ -1,7 +1,7 @@
 "use client";
 
 import { Inter } from "next/font/google";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Dropdown from "react-bootstrap/Dropdown";
@@ -16,6 +16,8 @@ import Badge from "components/badge";
 import PrimaryButton from "components/buttons/primary";
 
 import { FILTER_COMMUNITY_OPTIONS } from "constants/communityOptions";
+
+import { AuthContext } from "context/authContext";
 
 import "./styles.css";
 
@@ -41,6 +43,7 @@ const Board = () => {
     const [fetching, setFetching] = useState(false);
     const [fetchingError, setFetchingError] = useState("");
     const router = useRouter();
+    const { username } = useContext(AuthContext);
 
     useEffect(() => {
         const fetchPosts = async () => {
@@ -178,7 +181,16 @@ const Board = () => {
                             ))}
                         </DropdownButton>
 
-                        <PrimaryButton className="create-btn" onClick={() => setIsOpen(true)}>
+                        <PrimaryButton
+                            className="create-btn"
+                            onClick={() => {
+                                if (!username) {
+                                    router.push("/signin");
+                                } else {
+                                    setIsOpen(true);
+                                }
+                            }}
+                        >
                             Create +
                         </PrimaryButton>
 
