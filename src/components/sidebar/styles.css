@@ -1,0 +1,14 @@
+.side-bar-button {
+    color: var(--black);
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.side-bar-icon {
+    width: 24px;
+    cursor: pointer;
+    margin-right: 12px;
+}
