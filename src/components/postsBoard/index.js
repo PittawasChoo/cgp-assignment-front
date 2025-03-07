@@ -6,17 +6,17 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import pluralize from "pluralize";
 
-import Navbar from "components/navbar";
-import Sidebar from "components/sidebar";
-import PostFormModal from "components/postFormModal";
-import UserImage from "components/userImage";
 import Badge from "components/badge";
+import DeleteModal from "components/deleteModal";
+import ErrorPage from "components/errorPage";
+import Loading from "components/loading";
+import Navbar from "components/navbar";
+import PostFormModal from "components/postFormModal";
+import Sidebar from "components/sidebar";
+import UserImage from "components/userImage";
 
 import "./styles.css";
-import Loading from "components/loading";
-import ErrorPage from "components/errorPage";
 import FilterBar from "./filterBar";
-import DeleteModal from "components/deleteModal";
 
 const InterFont = Inter({
     variable: "--font-inter",

@@ -1,16 +1,16 @@
 "use client";
 
-import Link from "next/link";
 import { useContext } from "react";
 import { usePathname, useRouter } from "next/navigation";
+import Link from "next/link";
 
 import LogoText from "components/logoText";
 import PrimaryButton from "components/buttons/primary";
 
 import { AuthContext } from "context/authContext";
 
-import UserButton from "./userButton";
 import "./styles.css";
+import UserButton from "./userButton";
 
 const Navbar = () => {
     const router = useRouter();

@@ -3,11 +3,11 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
+import ErrorPage from "components/errorPage";
 import Loading from "components/loading";
 import Navbar from "components/navbar";
 import PostDetail from "./postDetail";
 import Sidebar from "components/sidebar";
-import ErrorPage from "components/errorPage";
 
 import "./styles.css";
 

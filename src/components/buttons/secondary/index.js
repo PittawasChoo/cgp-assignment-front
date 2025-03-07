@@ -1,4 +1,5 @@
 import { IBM_Plex_Sans_Thai } from "next/font/google";
+
 import "./styles.css";
 
 const IBMPlexSansThai = IBM_Plex_Sans_Thai({

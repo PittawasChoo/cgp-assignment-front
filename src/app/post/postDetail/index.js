@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import pluralize from "pluralize";
 
 import Badge from "components/badge";
+import CommentFormModal from "components/commentFormModal";
 import PrimaryButton from "components/buttons/primary";
 import SecondaryButton from "components/buttons/secondary";
 import UserImage from "components/userImage";
@@ -15,9 +16,8 @@ import { AuthContext } from "context/authContext";
 
 import { timeAgo } from "utils/timeAgo";
 
-import { validationSchema } from "./validationSchema";
 import "./styles.css";
-import CommentFormModal from "components/commentFormModal";
+import { validationSchema } from "./validationSchema";
 
 const InterFont = Inter({
     variable: "--font-inter",

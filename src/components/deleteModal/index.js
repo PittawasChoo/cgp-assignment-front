@@ -1,16 +1,16 @@
 "use client";
 
-import { useState } from "react";
 import { IBM_Plex_Sans_Thai, Inter } from "next/font/google";
+import { useState } from "react";
 import Modal from "react-bootstrap/Modal";
+
+import "./styles.css";
 
 const IBMPlexSansThai = IBM_Plex_Sans_Thai({
     variable: "--font-ibm-plex-sans-thai",
     subsets: ["latin", "thai"],
     weight: "500",
 });
-
-import "./styles.css";
 
 const InterFont = Inter({
     variable: "--font-inter",

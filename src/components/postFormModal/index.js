@@ -13,8 +13,8 @@ import SecondaryButton from "components/buttons/secondary";
 
 import { COMMUNITY_OPTIONS } from "constants/communityOptions";
 
-import { validationSchema } from "./validationSchema";
 import "./styles.css";
+import { validationSchema } from "./validationSchema";
 
 const BoldInterFont = Inter({
     variable: "--font-inter",
