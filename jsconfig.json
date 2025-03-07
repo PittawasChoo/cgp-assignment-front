@@ -4,6 +4,7 @@
             "components/*": ["./src/components/*"],
             "context/*": ["./src/context/*"],
             "constants/*": ["./src/constants/*"],
+            "utils/*": ["./src/utils/*"],
             "@/*": ["./src/*"]
         }
     }
